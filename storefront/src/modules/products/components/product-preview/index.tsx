@@ -27,11 +27,16 @@ export default async function ProductPreview({
     return acc + (variant?.inventory_quantity || 0)
   }, 0)
 
+  const stockLabel =
+    inventoryQuantity > 0
+      ? `${inventoryQuantity} left`
+      : "In stock"
+
   return (
     <LocalizedClientLink href={`/products/${product.handle}`} className="group">
       <div
         data-testid="product-wrapper"
-        className="flex flex-col gap-4 relative aspect-[3/5] w-full overflow-hidden p-4 bg-white shadow-borders-base rounded-lg group-hover:shadow-[0_0_0_4px_rgba(0,0,0,0.1)] transition-shadow ease-in-out duration-150"
+        className="flex flex-col gap-4 relative aspect-[3/5] w-full overflow-hidden p-4 bg-white border border-enterprise-border rounded-xl shadow-enterprise-sm group-hover:shadow-enterprise-md group-hover:border-enterprise-accent/30 transition-all ease-in-out duration-200"
       >
         <div className="w-full h-full p-10">
           <Thumbnail
@@ -41,11 +46,18 @@ export default async function ProductPreview({
             isFeatured={isFeatured}
           />
         </div>
-        <div className="flex flex-col txt-compact-medium">
-          <Text className="text-neutral-600 text-xs">BRAND</Text>
-          <Text className="text-ui-fg-base" data-testid="product-title">
+        <div className="flex flex-col">
+          <Text className="text-enterprise-navy-muted text-xs font-medium">
+            {(product.metadata as Record<string, unknown> | undefined)?.brand as string || "PRODUCT"}
+          </Text>
+          <Text className="text-enterprise-navy font-semibold" data-testid="product-title">
             {product.title}
           </Text>
+          {(product.metadata as Record<string, unknown> | undefined)?.oem_reference && (
+            <Text className="text-neutral-500 text-xs mt-0.5">
+              Ref: {(product.metadata as Record<string, unknown>).oem_reference as string}
+            </Text>
+          )}
         </div>
         <div className="flex flex-col gap-0">
           {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
@@ -55,18 +67,16 @@ export default async function ProductPreview({
           <div className="flex flex-row gap-1 items-center">
             <span
               className={clx({
-                "text-green-500": inventoryQuantity && inventoryQuantity > 50,
+                "text-green-500": inventoryQuantity > 50,
                 "text-orange-500":
-                  inventoryQuantity &&
-                  inventoryQuantity <= 50 &&
-                  inventoryQuantity > 0,
-                "text-red-500": inventoryQuantity === 0,
+                  inventoryQuantity > 0 && inventoryQuantity <= 50,
+                "text-green-500": inventoryQuantity === 0,
               })}
             >
               •
             </span>
             <Text className="text-neutral-600 text-xs">
-              {inventoryQuantity} left
+              {stockLabel}
             </Text>
           </div>
           <PreviewAddToCart product={product} region={region} />

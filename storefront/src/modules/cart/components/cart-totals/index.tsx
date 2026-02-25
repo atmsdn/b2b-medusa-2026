@@ -22,16 +22,11 @@ const CartTotals: React.FC = () => {
   } = cart
 
   return (
-    <div>
-      <div className="flex flex-col gap-y-2 txt-medium text-ui-fg-subtle ">
+    <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col gap-y-2 text-sm text-enterprise-navy-muted">
         <div className="flex items-center justify-between">
-          <Text className="flex gap-x-1 items-center">
-            Subtotal (excl. shipping and taxes)
-          </Text>
-          <Text
-            data-testid="cart-item-subtotal"
-            data-value={item_subtotal || 0}
-          >
+          <Text>Subtotal (excl. shipping and taxes)</Text>
+          <Text data-testid="cart-item-subtotal" data-value={item_subtotal || 0}>
             {convertToLocale({ amount: item_subtotal ?? 0, currency_code })}
           </Text>
         </div>
@@ -75,13 +70,13 @@ const CartTotals: React.FC = () => {
         )}
       </div>
       <Divider className="my-2" />
-      <div className="flex items-center justify-between text-ui-fg-base mb-2 txt-medium ">
-        <Text className="font-medium">Total</Text>
+      <div className="flex items-center justify-between text-enterprise-navy pt-1">
+        <Text className="font-semibold text-base">Total</Text>
         {isUpdatingCart ? (
-          <div className="w-28 h-6 mt-[3px] bg-neutral-200 rounded-full animate-pulse" />
+          <div className="w-24 h-6 bg-enterprise-slate-soft rounded animate-pulse" />
         ) : (
           <Text
-            className="txt-xlarge-plus"
+            className="font-semibold text-lg"
             data-testid="cart-total"
             data-value={total || 0}
           >

@@ -14,7 +14,9 @@ export const listRegions = async (): Promise<HttpTypes.StoreRegion[]> => {
     .fetch<{ regions: HttpTypes.StoreRegion[] }>(`/store/regions`, {
       method: "GET",
       next,
-      cache: "force-cache",
+      ...(process.env.NODE_ENV === "development"
+        ? { cache: "no-store" }
+        : { cache: "force-cache" }),
     })
     .then(({ regions }: { regions: HttpTypes.StoreRegion[] }) => regions)
     .catch(medusaError)

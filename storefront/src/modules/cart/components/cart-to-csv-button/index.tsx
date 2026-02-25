@@ -50,9 +50,9 @@ const CartToCsvButton = ({ cart }: CartToCsvButtonProps) => {
   }
 
   return (
-    <div className="flex flex-col gap-y-2 items-center">
+    <div className="flex flex-col gap-y-2">
       <Button
-        className="w-full h-10 rounded-full shadow-borders-base"
+        className="w-full h-10 rounded-lg border border-enterprise-border hover:bg-enterprise-slate-soft font-medium"
         variant="secondary"
         onClick={handleExportCart}
         isLoading={isExportingCart}

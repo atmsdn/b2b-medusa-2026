@@ -35,6 +35,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "slove-medusa-store.s3.ap-south-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
         hostname: "github.com",
       },
       {

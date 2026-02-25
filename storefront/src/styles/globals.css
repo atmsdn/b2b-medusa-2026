@@ -2,6 +2,17 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  /* Enterprise B2B design tokens */
+  --enterprise-navy: #0f172a;
+  --enterprise-navy-light: #1e293b;
+  --enterprise-navy-muted: #334155;
+  --enterprise-accent: #0d9488;
+  --enterprise-accent-hover: #0f766e;
+  --enterprise-bg: #f8fafc;
+  --enterprise-border: #e2e8f0;
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

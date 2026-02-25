@@ -154,8 +154,8 @@ const AccountNav = ({
         )}
       </div>
       <div className="hidden small:block" data-testid="account-nav">
-        <div className="text-lg">
-          <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
+        <div className="rounded-xl border border-enterprise-border bg-white p-4 shadow-enterprise-sm">
+          <ul className="flex mb-0 justify-start items-start flex-col gap-y-1">
             <li>
               <AccountNavLink
                 href="/account"
@@ -210,7 +210,7 @@ const AccountNav = ({
                 >
                   Approvals{" "}
                   {numPendingApprovals > 0 && (
-                    <span className="bg-blue-500 text-white text-xs px-1.5 py-px rounded-full">
+                    <span className="bg-enterprise-accent text-white text-xs px-1.5 py-0.5 rounded-full font-medium">
                       {numPendingApprovals}
                     </span>
                   )}
@@ -226,11 +226,12 @@ const AccountNav = ({
                 Quotes
               </AccountNavLink>
             </li>
-            <li className="text-neutral-400 hover:text-neutral-950">
+            <li className="mt-2 pt-2 border-t border-enterprise-border">
               <button
                 type="button"
                 onClick={handleLogout}
                 data-testid="logout-button"
+                className="flex items-center gap-x-2 px-3 py-2.5 rounded-lg text-sm font-medium text-enterprise-navy-muted hover:text-enterprise-navy hover:bg-enterprise-slate-soft w-full text-left transition-colors"
               >
                 Log out
               </button>
@@ -262,10 +263,10 @@ const AccountNavLink = ({
     <LocalizedClientLink
       href={href}
       className={clx(
-        "text-neutral-400 hover:text-neutral-950 flex items-center gap-x-2",
-        {
-          "text-neutral-950": active,
-        }
+        "flex items-center gap-x-2 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+        active
+          ? "bg-enterprise-accent/10 text-enterprise-accent"
+          : "text-enterprise-navy-muted hover:text-enterprise-navy hover:bg-enterprise-slate-soft"
       )}
       data-testid={dataTestId}
     >

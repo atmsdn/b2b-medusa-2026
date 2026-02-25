@@ -25,18 +25,21 @@ const CartTemplate = ({ customer }: { customer: B2BCustomer | null }) => {
   )
 
   return (
-    <div className="small:py-12 py-6 bg-neutral-100">
+    <div className="small:py-12 py-6 bg-enterprise-slate-soft min-h-[60vh]">
       <div className="content-container" data-testid="cart-container">
         {cart?.items?.length ? (
           <div>
-            <div className="flex flex-col py-6 gap-y-6">
-              <div className="pb-3 flex items-center">
-                <Heading className="text-neutral-950">
-                  You have {totalItems} items in your cart
+            <div className="flex flex-col py-6 gap-y-8">
+              <div className="pb-2">
+                <Heading className="text-enterprise-navy text-xl small:text-2xl font-semibold">
+                  Your cart
                 </Heading>
+                <p className="text-enterprise-navy-muted text-sm mt-1">
+                  {totalItems} {totalItems === 1 ? "item" : "items"}
+                </p>
               </div>
-              <div className="grid grid-cols-1 small:grid-cols-[1fr_360px] gap-2">
-                <div className="flex flex-col gap-y-2">
+              <div className="grid grid-cols-1 small:grid-cols-[1fr_400px] gap-8">
+                <div className="flex flex-col gap-y-4">
                   {!customer && <SignInPrompt />}
                   {cart?.approvals && cart.approvals.length > 0 && (
                     <ApprovalStatusBanner cart={cart} />
@@ -44,7 +47,7 @@ const CartTemplate = ({ customer }: { customer: B2BCustomer | null }) => {
                   <ItemsTemplate cart={cart} />
                 </div>
                 <div className="relative">
-                  <div className="flex flex-col gap-y-8 sticky top-20">
+                  <div className="flex flex-col gap-y-6 sticky top-24">
                     {cart && cart.region && (
                       <Summary
                         customer={customer}

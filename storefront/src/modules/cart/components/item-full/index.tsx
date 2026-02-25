@@ -88,47 +88,47 @@ const ItemFull = ({
 
   return (
     <Container
-      className={clx("flex gap-4 w-full h-full items-center justify-between", {
-        "shadow-none": !showBorders,
-      })}
+      className={clx(
+        "flex gap-4 w-full h-full items-center justify-between p-4 rounded-xl border border-enterprise-border bg-white",
+        { "shadow-none border-0": !showBorders }
+      )}
     >
-      <div className="flex gap-x-4 items-start">
-        <LocalizedClientLink href={`/products/${item.product_handle}`}>
+      <div className="flex gap-x-4 items-start flex-1 min-w-0">
+        <LocalizedClientLink href={`/products/${item.product_handle}`} className="shrink-0">
           <Thumbnail
             thumbnail={item.thumbnail}
             size="square"
             type="full"
-            className="bg-neutral-100 rounded-lg w-20 h-20"
+            className="bg-enterprise-slate-soft rounded-lg w-20 h-20 small:w-24 small:h-24 object-cover"
           />
         </LocalizedClientLink>
-        <div className="flex flex-col gap-y-2 justify-between min-h-full self-stretch">
+        <div className="flex flex-col gap-y-2 justify-between min-h-full self-stretch min-w-0">
           <div className="flex flex-col">
-            <span className="text-neutral-600 text-[0.6rem]">BRAND</span>
-
-            <span className="txt-medium-plus text-neutral-950">
+            <span className="text-enterprise-navy-muted text-xs font-medium uppercase tracking-wide">BRAND</span>
+            <span className="text-enterprise-navy font-semibold text-sm small:text-base line-clamp-2">
               {item.product?.title}
             </span>
-            <span className="text-neutral-600 text-xs">
+            <span className="text-enterprise-navy-muted text-xs mt-0.5">
               {item.variant?.title}
             </span>
           </div>
           <div className="flex small:flex-row flex-col gap-2">
             <LineItemPrice
-              className="flex small:hidden self-start"
+              className="flex small:hidden self-start text-enterprise-navy font-semibold"
               item={item}
               currencyCode={currencyCode}
             />
-            <div className="flex gap-x-2">
-              <div className="flex gap-x-3 shadow-[0_0_0_1px_rgba(0,0,0,0.1)] rounded-full w-fit p-px items-center">
+            <div className="flex gap-x-2 flex-wrap">
+              <div className="flex gap-x-2 border border-enterprise-border rounded-lg w-fit px-2 py-1 items-center bg-enterprise-slate-soft/50">
                 <button
                   className={clx(
-                    "w-4 h-4 flex items-center justify-center text-neutral-600 hover:bg-neutral-100 rounded-full text-md",
+                    "w-7 h-7 flex items-center justify-center text-enterprise-navy-muted hover:bg-white hover:text-enterprise-navy rounded-md text-sm font-medium transition-colors",
                     disabled ? "opacity-50 pointer-events-none" : "opacity-100"
                   )}
                   onClick={() => changeQuantity(item.quantity - 1)}
                   disabled={item.quantity <= 1 || disabled}
                 >
-                  -
+                  −
                 </button>
                 <span className="w-4 h-4 flex items-center justify-center text-neutral-950 text-xs">
                   {updating ? (
@@ -156,7 +156,7 @@ const ItemFull = ({
                 </span>
                 <button
                   className={clx(
-                    "w-4 h-4 flex items-center justify-center text-neutral-600 hover:bg-neutral-100 rounded-full text-md",
+                    "w-7 h-7 flex items-center justify-center text-enterprise-navy-muted hover:bg-white hover:text-enterprise-navy rounded-md text-sm font-medium transition-colors",
                     disabled ? "opacity-50 pointer-events-none" : "opacity-100"
                   )}
                   onClick={() => changeQuantity(item.quantity + 1)}
@@ -175,9 +175,9 @@ const ItemFull = ({
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-start justify-between min-h-full self-stretch">
+      <div className="flex flex-col items-end justify-between min-h-full self-stretch shrink-0">
         <LineItemPrice
-          className="hidden small:flex"
+          className="hidden small:flex text-enterprise-navy font-semibold text-base"
           item={item}
           currencyCode={currencyCode}
           style="default"

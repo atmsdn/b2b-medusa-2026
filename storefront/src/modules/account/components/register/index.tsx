@@ -103,14 +103,17 @@ const Register = ({ setCurrentView, regions }: Props) => {
 
   return (
     <div
-      className="max-w-sm flex flex-col items-start gap-2 my-8"
+      className="max-w-md w-full flex flex-col items-start gap-6 my-auto"
       data-testid="register-page"
     >
-      <Text className="text-4xl text-neutral-950 text-left mb-4">
-        Create your
-        <br />
-        company account.
-      </Text>
+      <div>
+        <h1 className="text-3xl font-semibold text-enterprise-navy tracking-tight">
+          Create your company account
+        </h1>
+        <Text className="text-enterprise-navy-muted text-sm mt-2">
+          Register to access bulk pricing, quotes, and company management.
+        </Text>
+      </div>
       <form className="w-full flex flex-col" action={formAction}>
         <div className="flex flex-col w-full gap-y-4">
           <Input
@@ -253,7 +256,7 @@ const Register = ({ setCurrentView, regions }: Props) => {
             </Select.Content>
           </Select>
         </div>
-        <div className="border-b border-neutral-200 my-6" />
+        <div className="border-t border-enterprise-border pt-6 my-6" />
         <ErrorMessage error={message} data-testid="register-error" />
         <div className="flex items-center gap-2">
           <Checkbox
@@ -262,10 +265,10 @@ const Register = ({ setCurrentView, regions }: Props) => {
             data-testid="terms-checkbox"
             checked={termsAccepted}
             onCheckedChange={(checked) => setTermsAccepted(!!checked)}
-          ></Checkbox>
+          />
           <Label
             id="terms-label"
-            className="flex items-center text-ui-fg-base !text-xs hover:cursor-pointer !transform-none"
+            className="flex items-center text-enterprise-navy-muted !text-sm hover:cursor-pointer !transform-none"
             htmlFor="terms-checkbox"
             data-testid="terms-label"
           >
@@ -273,22 +276,21 @@ const Register = ({ setCurrentView, regions }: Props) => {
           </Label>
         </div>
         <SubmitButton
-          className="w-full mt-6"
+          className="w-full mt-6 h-11"
           data-testid="register-button"
           disabled={!isValid}
         >
           Register
         </SubmitButton>
       </form>
-      <span className="text-center text-ui-fg-base text-small-regular mt-6">
+      <span className="text-center text-enterprise-navy-muted text-sm mt-6">
         Already a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.LOG_IN)}
-          className="underline"
+          className="text-enterprise-accent hover:text-enterprise-accent-hover font-medium underline underline-offset-2"
         >
           Log in
         </button>
-        .
       </span>
     </div>
   )

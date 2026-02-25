@@ -8,9 +8,9 @@ import { Suspense } from "react"
 export const dynamicParams = true
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "B2B Commerce | Enterprise Procurement Platform",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "Streamline your business procurement with bulk pricing, quote management, and simplified ordering.",
 }
 
 export async function generateStaticParams() {
@@ -32,7 +32,7 @@ export default async function Home(props: {
   const { countryCode } = params
 
   return (
-    <div className="flex flex-col gap-y-2 m-2">
+    <div className="flex flex-col">
       <Hero />
       <Suspense fallback={<SkeletonFeaturedProducts />}>
         <FeaturedProducts countryCode={countryCode} />

@@ -1,0 +1,9 @@
+[project]
+name = "mcp-b2b-ecommerce"
+version = "1.0.0"
+description = "MCP server for Medusa B2B ecommerce - architecture, low-code rules"
+requires-python = ">=3.10"
+dependencies = ["mcp[cli]>=1.0.0"]
+
+[project.scripts]
+mcp-b2b-ecommerce = "server:create_server"

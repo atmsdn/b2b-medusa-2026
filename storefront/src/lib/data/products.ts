@@ -34,7 +34,9 @@ export const getProductsById = async ({
       },
       headers,
       next,
-      cache: "force-cache",
+      ...(process.env.NODE_ENV === "development"
+        ? { cache: "no-store" }
+        : { cache: "force-cache" }),
     })
     .then(({ products }) => products)
 }
@@ -60,7 +62,9 @@ export const getProductByHandle = async (handle: string, regionId: string) => {
       },
       headers,
       next,
-      cache: "force-cache",
+      ...(process.env.NODE_ENV === "development"
+        ? { cache: "no-store" }
+        : { cache: "force-cache" }),
     })
     .then(({ products }) => products[0])
 }
@@ -108,12 +112,14 @@ export const listProducts = async ({
           limit,
           offset,
           region_id: region.id,
-          fields: "*variants.calculated_price",
+          fields: "*variants.calculated_price,+metadata",
           ...queryParams,
         },
         headers,
         next,
-        cache: "force-cache",
+        ...(process.env.NODE_ENV === "development"
+          ? { cache: "no-store" }
+          : { cache: "force-cache" }),
       }
     )
     .then(({ products, count }) => {
