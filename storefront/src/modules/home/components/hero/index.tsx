@@ -1,46 +1,38 @@
 "use client"
 
-import { Github } from "@medusajs/icons"
 import { Heading } from "@medusajs/ui"
-import Button from "@/modules/common/components/button"
-import Image from "next/image"
+import LocalizedClientLink from "@/modules/common/components/localized-client-link"
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-neutral-100">
-      <Image
-        src="/hero-image.jpg"
-        alt="Hero background"
-        layout="fill"
-        quality={100}
-        priority
-      />
-      <div className="absolute inset-0 z-1 flex flex-col justify-center items-center text-center small:p-32 gap-6">
-        <span>
-          <p className="text-neutral-600 text-xs uppercase">
-            Be light on your feet
-          </p>
-
-          <Heading
-            level="h1"
-            className="text-6xl leading-10 text-ui-fg-base font-normal mt-10 mb-5"
-          >
-            Portable Bestsellers
-          </Heading>
-
-          <p className="leading-10 text-ui-fg-subtle font-normal text-lg">
-            See our widest selection of electronics
-          </p>
+    <div className="relative w-full overflow-hidden bg-gradient-to-br from-enterprise-navy via-enterprise-navy-light to-enterprise-navy">
+      <div className="relative flex flex-col justify-center items-center text-center content-container py-24 small:py-32 gap-8">
+        <span className="text-enterprise-accent-muted text-sm font-medium uppercase tracking-widest">
+          Enterprise B2B Platform
         </span>
-        <a
-          href="https://github.com/medusajs/b2b-starter-medusa"
-          target="_blank"
+        <Heading
+          level="h1"
+          className="text-4xl small:text-6xl font-semibold text-white tracking-tight max-w-3xl"
         >
-          <Button variant="secondary" className="rounded-2xl">
-            <Github />
-            Github Repository
-          </Button>
-        </a>
+          Streamline Your Business Procurement
+        </Heading>
+        <p className="text-slate-300 text-lg small:text-xl max-w-2xl leading-relaxed">
+          Access bulk pricing, manage quotes, and simplify ordering for your organization.
+        </p>
+        <div className="flex gap-4 mt-2">
+          <LocalizedClientLink
+            href="/store"
+            className="inline-flex items-center justify-center rounded-lg bg-enterprise-accent hover:bg-enterprise-accent-hover text-white font-semibold px-6 py-3 transition-colors shadow-enterprise-md"
+          >
+            Browse Catalog
+          </LocalizedClientLink>
+          <LocalizedClientLink
+            href="/account"
+            className="inline-flex items-center justify-center rounded-lg border border-slate-500/50 hover:border-slate-400 text-white font-semibold px-6 py-3 transition-colors"
+          >
+            Account
+          </LocalizedClientLink>
+        </div>
       </div>
     </div>
   )

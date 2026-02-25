@@ -1,29 +1,37 @@
-import { listCollections } from "@/lib/data/collections"
+import { listProducts } from "@/lib/data/products"
 import { getRegion } from "@/lib/data/regions"
-import ProductRail from "@/modules/home/components/featured-products/product-rail"
+import { sortProducts } from "@/lib/util/sort-products"
+import LatestProductsRail from "@/modules/home/components/featured-products/latest-products-rail"
 
 export default async function FeaturedProducts({
   countryCode,
 }: {
   countryCode: string
 }) {
-  const { collections } = await listCollections({
-    limit: "3",
-    fields: "*products",
-  })
   const region = await getRegion(countryCode)
-
-  if (!collections || !region) {
+  if (!region) {
     return null
   }
 
+  const {
+    response: { products: rawProducts },
+  } = await listProducts({
+    pageParam: 1,
+    countryCode,
+    queryParams: {
+      limit: 12,
+    },
+  })
+
+  if (!rawProducts?.length) {
+    return null
+  }
+
+  const products = sortProducts(rawProducts, "created_at").slice(0, 8)
+
   return (
-    <ul className="flex flex-col gap-x-6 bg-neutral-100">
-      {collections.map((collection) => (
-        <li key={collection.id}>
-          <ProductRail collection={collection} region={region} />
-        </li>
-      ))}
-    </ul>
+    <div className="flex flex-col bg-enterprise-slate-soft">
+      <LatestProductsRail products={products} region={region} />
+    </div>
   )
 }

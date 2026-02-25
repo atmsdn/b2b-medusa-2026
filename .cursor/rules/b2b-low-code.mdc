@@ -1,0 +1,42 @@
+---
+description: "B2B ecommerce low-code rules - preserve core logic, extend via config"
+globs: ["backend/**", "storefront/**"]
+alwaysApply: false
+---
+
+# B2B Ecommerce Low-Code / No-Code Rules
+
+## Core Principle
+**Preserve open-source logic. Extend via configuration and composition, not modification.**
+
+## DO NOT MODIFY (Core Logic)
+
+### Backend
+- `backend/src/modules/*/models/` - Data models
+- `backend/src/modules/*/service.ts` - Module service logic
+- `backend/src/workflows/*/steps/` - Workflow step implementations
+- `backend/src/api/*/validators.ts` - Request validation schemas
+- `backend/src/api/*/query-config.ts` - Query transformation
+- `backend/src/modules/*/migrations/` - Database migrations
+
+### Frontend
+- `storefront/src/lib/data/*.ts` - Data fetching layer
+- `storefront/src/lib/util/*.ts` - Core utilities
+- `storefront/src/types/*.ts` - Type definitions
+
+## SAFE TO CUSTOMIZE
+- `backend/.env`, `storefront/.env`
+- `backend/medusa-config.ts` (module resolve paths only)
+- `storefront/next.config.js`, `tailwind.config.js`, `globals.css`
+
+## SAFE TO EXTEND (Additive)
+- Add new API routes in `backend/src/api/`
+- Add new components/pages in `storefront/src/`
+
+## SAFE TO STYLE
+- `className`, styling, layout in components/templates
+
+## Before Any Edit
+1. Is this in DO NOT MODIFY?
+2. Adding (new file) vs replacing (existing logic)?
+3. Prefer config or presentation over core logic changes.

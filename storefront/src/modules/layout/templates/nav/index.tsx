@@ -18,17 +18,17 @@ export async function NavigationHeader() {
   const cart = await retrieveCart()
 
   return (
-    <div className="sticky top-0 inset-x-0 group bg-white text-zinc-900 small:p-4 p-2 text-sm border-b duration-200 border-ui-border-base z-50">
+    <div className="sticky top-0 inset-x-0 bg-white text-enterprise-navy border-b border-enterprise-border shadow-enterprise-sm z-50">
       <header className="flex w-full content-container relative small:mx-auto justify-between">
-        <div className="small:mx-auto flex justify-between items-center min-w-full">
-          <div className="flex items-center small:space-x-4">
+        <div className="small:mx-auto flex justify-between items-center min-w-full small:py-3 py-2">
+          <div className="flex items-center small:space-x-8">
             <LocalizedClientLink
-              className="hover:text-ui-fg-base flex items-center w-fit"
+              className="hover:text-enterprise-accent transition-colors flex items-center w-fit"
               href="/"
             >
-              <h1 className="small:text-base text-sm font-medium flex items-center">
-                <LogoIcon className="inline mr-2" />
-                Medusa B2B Starter
+              <h1 className="small:text-lg text-sm font-semibold flex items-center tracking-tight text-enterprise-navy">
+                <LogoIcon className="inline mr-2.5" />
+                B2B Commerce
               </h1>
             </LocalizedClientLink>
 
@@ -42,24 +42,23 @@ export async function NavigationHeader() {
               </ul>
             </nav>
           </div>
-          <div className="flex justify-end items-center gap-2">
+          <div className="flex justify-end items-center gap-1 small:gap-3">
             <div className="relative mr-2 hidden small:inline-flex">
               <input
                 disabled
                 type="text"
-                placeholder="Search for products"
-                className="bg-gray-100 text-zinc-900 px-4 py-2 rounded-full pr-10 shadow-borders-base hidden small:inline-block hover:cursor-not-allowed"
+                placeholder="Search products..."
+                className="bg-gray-50 text-enterprise-navy border border-enterprise-border rounded-lg px-4 py-2 pr-10 w-64 text-sm placeholder:text-slate-400 hover:cursor-not-allowed"
                 title="Install a search provider to enable product search"
               />
             </div>
 
-            <div className="h-4 w-px bg-neutral-300" />
+            <div className="h-5 w-px bg-enterprise-border hidden small:block" />
 
             {customer && cart?.items && cart.items.length > 0 ? (
               <RequestQuoteConfirmation>
                 <button
-                  className="flex gap-1.5 items-center rounded-2xl bg-none shadow-none border-none hover:bg-neutral-100 px-2 py-1"
-                  // disabled={isPendingApproval}
+                  className="flex gap-1.5 items-center rounded-lg px-3 py-2 text-sm font-medium text-enterprise-navy-muted hover:text-enterprise-accent hover:bg-enterprise-slate-soft transition-colors"
                 >
                   <FilePlus />
                   <span className="hidden small:inline-block">Quote</span>
@@ -67,7 +66,7 @@ export async function NavigationHeader() {
               </RequestQuoteConfirmation>
             ) : (
               <RequestQuotePrompt>
-                <button className="flex gap-1.5 items-center rounded-2xl bg-none shadow-none border-none hover:bg-neutral-100 px-2 py-1">
+                <button className="flex gap-1.5 items-center rounded-lg px-3 py-2 text-sm font-medium text-enterprise-navy-muted hover:text-enterprise-accent hover:bg-enterprise-slate-soft transition-colors">
                   <FilePlus />
                   <span className="hidden small:inline-block">Quote</span>
                 </button>

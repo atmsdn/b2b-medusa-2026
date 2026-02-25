@@ -44,7 +44,9 @@ export async function retrieveCart(id?: string) {
       },
       headers,
       next,
-      cache: "force-cache",
+      ...(process.env.NODE_ENV === "development"
+        ? { cache: "no-store" }
+        : { cache: "force-cache" }),
     })
     .then(({ cart }) => {
       return cart as B2BCart
@@ -186,6 +188,7 @@ export async function addToCartBulk({
     {
       method: "POST",
       headers,
+      credentials: "include",
       body: JSON.stringify({ line_items: lineItems }),
     }
   )

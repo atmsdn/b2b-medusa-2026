@@ -50,10 +50,12 @@ const ItemsTemplate = ({
           })}
       </div>
       {showTotal && (
-        <Container>
-          <div className="flex items-start justify-between h-full self-stretch">
-            <Text>Total: {totalQuantity} items</Text>
-            <Text>
+        <Container className="rounded-xl border border-enterprise-border bg-white p-4">
+          <div className="flex items-center justify-between">
+            <Text className="text-enterprise-navy-muted text-sm">
+              Total: {totalQuantity} {totalQuantity === 1 ? "item" : "items"}
+            </Text>
+            <Text className="text-enterprise-navy font-semibold">
               {convertToLocale({
                 amount: cart?.item_total,
                 currency_code: cart?.currency_code,

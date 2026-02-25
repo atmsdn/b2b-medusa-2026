@@ -16,16 +16,19 @@ const Login = ({ setCurrentView }: Props) => {
 
   return (
     <div
-      className="max-w-sm w-full h-full flex flex-col justify-center gap-6 my-auto"
+      className="max-w-md w-full flex flex-col justify-center gap-8 my-auto"
       data-testid="login-page"
     >
-      <Text className="text-4xl text-neutral-950 text-left">
-        Log in for faster
-        <br />
-        checkout.
-      </Text>
+      <div>
+        <h1 className="text-3xl font-semibold text-enterprise-navy tracking-tight">
+          Log in for faster checkout
+        </h1>
+        <Text className="text-enterprise-navy-muted text-sm mt-2">
+          Access your account to manage orders, quotes, and company settings.
+        </Text>
+      </div>
       <form className="w-full" action={formAction}>
-        <div className="flex flex-col w-full gap-y-2">
+        <div className="flex flex-col w-full gap-y-4">
           <Input
             label="Email"
             name="email"
@@ -34,6 +37,7 @@ const Login = ({ setCurrentView }: Props) => {
             autoComplete="email"
             required
             data-testid="email-input"
+            className="border-enterprise-border focus:border-enterprise-accent"
           />
           <Input
             label="Password"
@@ -42,24 +46,24 @@ const Login = ({ setCurrentView }: Props) => {
             autoComplete="current-password"
             required
             data-testid="password-input"
+            className="border-enterprise-border focus:border-enterprise-accent"
           />
-          <div className="flex flex-col gap-2 w-full border-b border-neutral-200 my-6" />
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 pt-2">
             <Checkbox name="remember_me" data-testid="remember-me-checkbox" />
-            <Text className="text-neutral-950 text-base-regular">
+            <Text className="text-enterprise-navy-muted text-sm">
               Remember me
             </Text>
           </div>
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
-        <div className="flex flex-col gap-2">
-          <SubmitButton data-testid="sign-in-button" className="w-full mt-6">
+        <div className="flex flex-col gap-3 mt-8">
+          <SubmitButton data-testid="sign-in-button" className="w-full h-11">
             Log in
           </SubmitButton>
           <Button
             variant="secondary"
             onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-            className="w-full h-10"
+            className="w-full h-11 border-enterprise-border hover:bg-enterprise-slate-soft text-enterprise-navy border"
             data-testid="register-button"
           >
             Register

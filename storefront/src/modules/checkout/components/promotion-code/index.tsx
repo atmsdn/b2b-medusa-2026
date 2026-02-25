@@ -68,7 +68,7 @@ const PromotionCode: React.FC<PromotionCodeProps> = ({ cart }) => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="flex gap-x-1 my-2 items-center txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+              className="flex gap-x-1 my-2 items-center text-sm font-medium text-enterprise-accent hover:text-enterprise-accent-hover transition-colors"
               data-testid="add-discount-button"
             >
               Enter Promotion Code{" "}

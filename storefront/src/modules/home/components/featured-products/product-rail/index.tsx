@@ -24,9 +24,9 @@ export default async function ProductRail({
   })
 
   return (
-    <div className="content-container py-12 small:py-24 bg-neutral-100">
-      <div className="flex justify-between mb-8">
-        <Text className="text-base">{collection.title}</Text>
+    <div className="content-container py-12 small:py-24 bg-enterprise-slate-soft">
+      <div className="flex justify-between items-center mb-8">
+        <Text className="text-xl font-semibold text-enterprise-navy">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all
         </InteractiveLink>

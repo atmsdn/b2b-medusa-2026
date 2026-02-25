@@ -2,51 +2,25 @@
 
 import Button from "@/modules/common/components/button"
 import LocalizedClientLink from "@/modules/common/components/localized-client-link"
-import { clx, Container, Text } from "@medusajs/ui"
-import Image from "next/image"
-import { useEffect, useState } from "react"
-
-const BackgroundImage = () => {
-  const [imageLoaded, setImageLoaded] = useState(false)
-
-  useEffect(() => {
-    const img = new window.Image()
-    img.src = "/login-banner-bg.png"
-    img.onload = () => setImageLoaded(true)
-  }, [])
-
-  return (
-    <div className="relative w-full h-full transition-opacity duration-300">
-      <Image
-        src="/login-banner-bg.png"
-        alt="Login banner background"
-        className={clx(
-          "absolute inset-0 object-cover object-center w-full h-full transition-opacity duration-300",
-          imageLoaded ? "opacity-100" : "opacity-0"
-        )}
-        layout="fill"
-        quality={100}
-        priority
-      />
-    </div>
-  )
-}
+import { Text } from "@medusajs/ui"
 
 const SignInPrompt = () => {
   return (
-    <Container className="flex justify-between self-stretch relative w-full h-28 p-0 overflow-hidden">
-      <BackgroundImage />
-      <div className="absolute inset-0 z-1 flex justify-between items-center text-center p-4">
-        <Text className="small:text-4xl text-lg text-white text-left">
-          Log in for
-          <br />
-          faster checkout.
-        </Text>
-        <div className="flex small:flex-row flex-col small:gap-4 gap-2">
+    <div className="relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-enterprise-navy via-enterprise-navy-light to-enterprise-navy p-6 small:p-8">
+      <div className="relative z-10 flex flex-col small:flex-row justify-between items-start small:items-center gap-4">
+        <div>
+          <Text className="text-white text-lg small:text-2xl font-semibold">
+            Log in for faster checkout
+          </Text>
+          <Text className="text-slate-300 text-sm mt-1">
+            Save your cart and access your order history
+          </Text>
+        </div>
+        <div className="flex flex-row gap-3">
           <LocalizedClientLink href="/account?view=register">
             <Button
               variant="secondary"
-              className="small:h-10 h-8 small:min-w-36 min-w-24 rounded-full"
+              className="h-10 min-w-[120px] rounded-lg bg-white/10 border-white/20 text-white hover:bg-white/20"
               data-testid="sign-in-button"
             >
               Register
@@ -55,7 +29,7 @@ const SignInPrompt = () => {
           <LocalizedClientLink href="/account?view=log-in">
             <Button
               variant="primary"
-              className="small:h-10 h-8 small:min-w-36 min-w-24 rounded-full"
+              className="h-10 min-w-[120px] rounded-lg bg-enterprise-accent hover:bg-enterprise-accent-hover text-white border-none"
               data-testid="sign-in-button"
             >
               Log in
@@ -63,7 +37,7 @@ const SignInPrompt = () => {
           </LocalizedClientLink>
         </div>
       </div>
-    </Container>
+    </div>
   )
 }
 

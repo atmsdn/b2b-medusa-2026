@@ -7,6 +7,10 @@ import "@/styles/globals.css"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
+  title: {
+    default: "B2B Commerce | Enterprise Procurement Platform",
+    template: "%s | B2B Commerce",
+  },
 }
 
 export default function RootLayout(props: { children: React.ReactNode }) {
